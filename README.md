@@ -427,13 +427,13 @@ docker exec ollama-container nvidia-smi
 
 ### 获取帮助
 - 📖 **文档**：查阅项目文档获取详细信息
-- 🐛 **Issues**：[GitHub Issues](https://github.com/your-username/JetLLM/issues) 报告问题
-- 💬 **讨论**：[GitHub Discussions](https://github.com/your-username/JetLLM/discussions) 社区讨论
+- 🐛 **Issues**：[GitHub Issues](https://github.com/ShunmeiCho/JetLLM/issues) 报告问题
+- 💬 **讨论**：[GitHub Discussions](https://github.com/ShunmeiCho/JetLLM/discussions) 社区讨论
 
 ### 相关资源
-- [NVIDIA Jetson Developer Zone](https://developer.nvidia.com/embedded/jetson)
+- [NVIDIA Jetson 软件文档](https://docs.nvidia.com/jetson/)
 - [Jetson-Containers官方仓库](https://github.com/dusty-nv/jetson-containers)
-- [Ollama官方文档](https://ollama.ai/docs)
+- [Ollama官方文档](https://ollama.com/)
 
 ## 📄 许可证
 
@@ -445,8 +445,8 @@ docker exec ollama-container nvidia-smi
 
 感谢以下项目和社区的支持：
 - [Jetson-Containers](https://github.com/dusty-nv/jetson-containers) - 核心容器化框架
-- [Ollama](https://ollama.ai/) - 本地LLM运行时
-- [NVIDIA Jetson](https://developer.nvidia.com/embedded/jetson) - 边缘AI硬件平台
+- [Ollama](https://ollama.com/) - 本地LLM运行时
+- [NVIDIA Jetson](https://docs.nvidia.com/jetson/) - 边缘AI硬件平台
 - 开源社区的所有贡献者
 
 ---
