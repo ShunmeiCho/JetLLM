@@ -61,37 +61,82 @@
 1. **启动服务：** `./scripts/start-ollama.sh`
 2. **验证环境：** `./scripts/quick-test.sh`
 3. **性能测试：** `./scripts/test_qwen.sh qwen2.5:1.5b`
-4. **监控系统：** `./scripts/monitor.sh 10`
+4. **持续监控：** `./scripts/monitor.sh 10` （10秒间隔）
 
-### 权限设置
-确保所有脚本具有执行权限：
+### 多模型环境管理
+
+#### 支持的模型类型
+- **Qwen2.5系列**：已验证稳定运行
+- **Qwen3系列**：最新一代，支持0.6b-8b规格
+- **DeepSeek-R1系列**：专业推理模型，支持1.5b-8b规格
+- **SmolLM2系列**：超轻量级测试模型
+
+#### 推荐模型组合
 ```bash
-chmod +x scripts/*.sh
+# 日常使用组合
+./scripts/test_qwen.sh qwen2.5:1.5b    # 快速响应
+./scripts/test_qwen.sh qwen3:1.7b      # 平衡性能
+./scripts/test_qwen.sh deepseek-r1:7b  # 专业推理
+
+# 注意：大模型需要监控内存使用
+./scripts/monitor.sh 5  # 使用大模型时建议持续监控
 ```
 
-### 环境要求
-- Docker已安装并有执行权限
-- jetson-containers工具链已配置
-- Ollama容器镜像已构建
-- 系统支持CUDA和GPU加速
+### 基本故障排除
 
-## 故障排除
-
-### 常见问题
-1. **权限不足：** 运行`sudo usermod -aG docker $USER`并重新登录
-2. **容器未找到：** 检查`autotag ollama`输出的镜像标签
-3. **GPU不可用：** 验证`nvidia-smi`命令是否正常
-4. **API连接失败：** 确认ollama容器正在运行且端口11434可访问
-
-### 日志查看
+#### 常见问题解决
 ```bash
-# Docker容器日志
-docker logs <container_name>
+# 容器无法启动
+./scripts/start-ollama.sh  # 自动检测并重启
 
-# 系统服务日志（如果使用直接安装）
-journalctl -u ollama -f
+# API无响应
+docker restart ollama-container
+
+# 内存不足
+# 切换到更小的模型或重启容器
 ```
 
-## 更新记录
-- 2024-12-19: 初始版本创建
-- 脚本集合统一管理，支持完整的Qwen部署工作流 
+#### 资源监控
+```bash
+# 检查系统状态
+./scripts/quick-test.sh
+
+# 实时监控资源
+./scripts/monitor.sh 5
+
+# 检查当前模型
+docker exec ollama-container ollama ps
+```
+
+## 扩展功能
+
+### 批量测试
+```bash
+# 测试多个模型性能
+for model in qwen2.5:1.5b qwen3:1.7b; do
+    echo "Testing $model..."
+    ./scripts/test_qwen.sh $model
+done
+```
+
+### 定制监控
+```bash
+# 长期监控（后台运行）
+nohup ./scripts/monitor.sh 60 > monitor.log 2>&1 &
+```
+
+## 更新日志
+
+### 2025-05-29 更新
+- ✅ 完成基础脚本集合
+- ✅ 支持多模型管理
+- ✅ 新增监控和测试功能
+- ✅ 建立最佳实践指南
+
+---
+
+**注意事项**：
+- 所有脚本都已设置可执行权限
+- 建议在使用大模型前先运行监控脚本
+- 详细的技术分析请参考 `jetson-qwen-deployment-log.md`
+- 运营管理指南请参考 `jetson-containers-ollama-guide.md` 

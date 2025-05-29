@@ -45,13 +45,13 @@ System Architecture Layers:
 ┌─────────────────────────────────────┐
 │     Application Layer (用户应用)     │
 ├─────────────────────────────────────┤  
-│     Package Layer (AI包管理)        │
-│  ┌─llm/┬─vlm/┬─ml/┬─cv/┬─robotics/┐  │
-│  └─────┴────┴────┴────┴──────────┘  │
+│     Package Layer (AI包管理)         │
+│  ┌─llm/┬─vlm/┬─ml/┬─cv/┬─robotics/┐ │
+│  └─────┴────┴────┴────┴────────-──┘ │
 ├─────────────────────────────────────┤
-│     Container Layer (容器运行时)     │
+│     Container Layer (容器运行时)      │
 ├─────────────────────────────────────┤
-│     System Layer (JetPack/L4T)     │
+│     System Layer (JetPack/L4T)      │
 └─────────────────────────────────────┘
 ```
 
